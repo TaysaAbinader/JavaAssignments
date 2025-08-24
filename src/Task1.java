@@ -8,5 +8,7 @@ public class Task1 {
         String answer = scanner.nextLine();
         
         System.out.printf("Nice to meet you, %s ", answer);
+
+        scanner.close();
     }
 }

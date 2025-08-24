@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Cat {
     private String name;
 
@@ -12,20 +10,12 @@ public class Cat {
     }
 
     public static void main(String[] args) {
-        // Create an instance of the Cat class with a name
-        Scanner reader = new Scanner(System.in);
+        Cat whiskers = new Cat("Whiskers");
+        Cat rex = new Cat("Rex");
 
-        System.out.print("Cat's name: ");
-        String catName = reader.nextLine();
-        if (catName.isEmpty){
-            System.out.print("Cat's name: ");
-            catName = reader.nextLine();
-        } else {
-            Cat cat = new Cat(catName);
-        }
-
-    }
-    // Call the meow method on the cat instance
-        cat.meow();
+        whiskers.meow();
+        whiskers.meow();
+        rex.meow();
+        whiskers.meow();
     }
 }
