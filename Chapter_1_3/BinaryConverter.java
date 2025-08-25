@@ -6,46 +6,26 @@ public class BinaryConverter {
 
     public BinaryConverter () {}
 
-    //Find the 1 on the binary numbers
-    public double binaryIndexFinder (String binary, int fromIndex) {
-        for (int i = fromIndex; i < binary.length(); i++){
-            if (binary.charAt(i) == '1') {
-                return i;
-            } else {
-                return -1;//check later
-            }
-        }
-    }
-    //Calculate the decimals from the indexes of the binary
-    public double calculateDecimalperBinary (double index){
-        return Math.pow(2, index);
-    }
-
-
     public static void main (String[] args) {
         Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Give me a binary number, I'll convert it to decimal: ");
+        String binaryString = scanner.nextLine();
 
-        String binaryNumberValue = scanner.nextLine();
+        double counter = 0;
 
-        ArrayList<double> decimals = new ArrayList<>();
-        double sum = 0;
-
-        BinaryConverter converter = new BinaryConverter();
-        int fromIndex = 0;
-        double index;
-        double indexValue = converter.binaryIndexFinder(binaryNumberValue);
-
-        while (index = indexValue != -1) {
-            int power = binaryNumberValue.length() - 1 - index;
-            double decimalValue = converter.calculateDecimalperBinary(indexValue);
-            decimals.add(decimalValue);
-            fromIndex = index + 1;
+        for (int i = 0; i < binaryString.length(); i++) {
+            char item = binaryString.charAt(i);
+            if (item == '0') {
+                continue;
+            } else if (item == '1') {
+                counter += Math.pow(2, (binaryString.length() - 1) -i);
+            } else {
+               System.out.println("Error: " + binaryString + " is not a binary string.");
+               return;
+            }
         }
-        for (double number : decimals){
-            sum += number;
 
-        }
-    System.out.println("ArrayList " + decimals);
-    System.out.println("The binary "+ binaryNumberValue + "is in decimals " + sum);
+        System.out.println(counter);
     }
 }
