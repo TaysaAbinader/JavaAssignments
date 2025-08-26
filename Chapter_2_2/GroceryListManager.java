@@ -121,6 +121,10 @@ public class GroceryListManager {
         manager.addItem("Apples", 20, "Fruits", 48); // duplicate
         manager.removeItem("Tomatoes"); // not existent
 
+        System.out.println("Apples quantity is negative, so not listed as available:");
+        manager.updateQuantity("Apples", -10);
+        manager.displayAvailableItems();
+
         System.out.println("Total cost: " + manager.calculateTotalCost());
     }
 }
