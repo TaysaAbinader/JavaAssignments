@@ -8,12 +8,12 @@ public class GroceryListManager {
     public GroceryListManager() {}
 
     // This method should add the given item to the grocery list.
-    public void addItem(String item, double cost, String category) {
+    public void addItem(String item, double cost, String category, int quantity) {
         if (checkItem(item)) {
             System.err.println("Error: item " + item + " already added.");
             return;
         }
-        groceryList.add(new GroceryListItem(item, category, cost));
+        groceryList.add(new GroceryListItem(item, category, cost, quantity));
     }
 
     // This method should remove the given item from the grocery list.
@@ -27,6 +27,14 @@ public class GroceryListManager {
             if (groceryList.get(i).name == item) {
                 groceryList.remove(i);
                 return;
+            }
+        }
+    }
+
+    public void updateQuantity(String name, int newQuantity) {
+        for (GroceryListItem item : groceryList) {
+            if (item.name == name) {
+                item.quantity = newQuantity;
             }
         }
     }
@@ -50,10 +58,22 @@ public class GroceryListManager {
         }
     }
 
+    public void displayAvailableItems() {
+        int counter = 1;
+        for (GroceryListItem item : groceryList) {
+            if (item.quantity > 0) {
+                System.out.println(counter + ". " + item.name + " (" + item.quantity + ")");
+                counter++;
+            }
+        }
+    }
+
     public double calculateTotalCost() {
         double totalCost = 0;
         for (GroceryListItem item : groceryList) {
-            totalCost += item.cost;
+            if (item.quantity > 0) {
+                totalCost += item.cost * item.quantity;
+            }
         }
         return totalCost;
     }
@@ -71,9 +91,9 @@ public class GroceryListManager {
     public static void main(String[] args) {
         GroceryListManager manager = new GroceryListManager();
 
-        manager.addItem("Apples", 10, "Fruits");
-        manager.addItem("Milk", 20, "Dairy");
-        manager.addItem("Bread", 30, "Bakery");
+        manager.addItem("Apples", 10, "Fruits", 12);
+        manager.addItem("Milk", 20, "Dairy", 24);
+        manager.addItem("Bread", 30, "Bakery", 36);
 
         System.out.println("Grocery List:");
         manager.displayList();
@@ -90,8 +110,15 @@ public class GroceryListManager {
         System.out.println("Filter by Fruits:");
         manager.displayByCategory("Fruits");
 
+        System.out.println("Filter by items with positive quantity:");
+        manager.displayAvailableItems();
+
+        System.out.println("Updating amount of apples to 100:");
+        manager.updateQuantity("Apples", 100);
+        manager.displayAvailableItems();
+
         // Error checks
-        manager.addItem("Apples", 20, "Fruits"); // duplicate
+        manager.addItem("Apples", 20, "Fruits", 48); // duplicate
         manager.removeItem("Tomatoes"); // not existent
 
         System.out.println("Total cost: " + manager.calculateTotalCost());
