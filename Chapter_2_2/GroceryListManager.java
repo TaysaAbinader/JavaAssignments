@@ -1,20 +1,19 @@
 package Chapter_2_2;
 
-import java.util.HashMap;
-import java.util.Set;
+import java.util.ArrayList;
 
 public class GroceryListManager {
-    private HashMap<String, Double> groceryList = new HashMap<>();
+    private ArrayList<GroceryListItem> groceryList = new ArrayList();
 
     public GroceryListManager() {}
 
     // This method should add the given item to the grocery list.
-    public void addItem(String item, double cost) {
+    public void addItem(String item, double cost, String category) {
         if (checkItem(item)) {
             System.err.println("Error: item " + item + " already added.");
             return;
         }
-        groceryList.put(item, cost);
+        groceryList.add(new GroceryListItem(item, category, cost));
     }
 
     // This method should remove the given item from the grocery list.
@@ -23,37 +22,58 @@ public class GroceryListManager {
             System.err.println("Error: item " + item + " is non-existent.");
             return;
         }
-        groceryList.remove(item);
+
+        for (int i = 0; i < groceryList.size(); i++) {
+            if (groceryList.get(i).name == item) {
+                groceryList.remove(i);
+                return;
+            }
+        }
     }
 
     // This method should display all the items in the grocery list.
     public void displayList() {
         int counter = 1;
-        for (String item : groceryList.keySet()) {
-            System.out.println(counter + ". " + item);
+        for (GroceryListItem item : groceryList) {
+            System.out.println(counter + ". " + item.name);
             counter++;
+        }
+    }
+
+    public void displayByCategory(String category) {
+        int counter = 1;
+        for (GroceryListItem item : groceryList) {
+            if (item.category == category) {
+                System.out.println(counter + ". " + item.name + " (" + item.category + ")");
+                counter++;
+            }
         }
     }
 
     public double calculateTotalCost() {
         double totalCost = 0;
-        for (double cost : groceryList.values()) {
-            totalCost += cost;
+        for (GroceryListItem item : groceryList) {
+            totalCost += item.cost;
         }
         return totalCost;
     }
 
     // This method should check if the given item is present in the grocery list and return a boolean value.
     public boolean checkItem(String item) {
-        return groceryList.containsKey(item);
+        for (int i = 0; i < groceryList.size(); i++) {
+            if (groceryList.get(i).name == item) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void main(String[] args) {
         GroceryListManager manager = new GroceryListManager();
 
-        manager.addItem("Apples", 10);
-        manager.addItem("Milk", 20);
-        manager.addItem("Bread", 30);
+        manager.addItem("Apples", 10, "Fruits");
+        manager.addItem("Milk", 20, "Dairy");
+        manager.addItem("Bread", 30, "Bakery");
 
         System.out.println("Grocery List:");
         manager.displayList();
@@ -67,8 +87,11 @@ public class GroceryListManager {
         System.out.println("Updated Grocery List:");
         manager.displayList();
 
+        System.out.println("Filter by Fruits:");
+        manager.displayByCategory("Fruits");
+
         // Error checks
-        manager.addItem("Apples", 20); // duplicate
+        manager.addItem("Apples", 20, "Fruits"); // duplicate
         manager.removeItem("Tomatoes"); // not existent
 
         System.out.println("Total cost: " + manager.calculateTotalCost());
