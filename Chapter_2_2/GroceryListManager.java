@@ -1,19 +1,20 @@
 package Chapter_2_2;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 public class GroceryListManager {
-    private ArrayList<String> groceryList = new ArrayList<>();
+    private HashMap<String, Double> groceryList = new HashMap<>();
 
     public GroceryListManager() {}
 
     // This method should add the given item to the grocery list.
-    public void addItem(String item) {
+    public void addItem(String item, double cost) {
         if (checkItem(item)) {
             System.err.println("Error: item " + item + " already added.");
             return;
         }
-        groceryList.add(item);
+        groceryList.put(item, cost);
     }
 
     // This method should remove the given item from the grocery list.
@@ -27,22 +28,32 @@ public class GroceryListManager {
 
     // This method should display all the items in the grocery list.
     public void displayList() {
-        for (int i = 0; i < groceryList.size(); i++) {
-            System.out.println((i + 1) + ". " + groceryList.get(i));
+        int counter = 1;
+        for (String item : groceryList.keySet()) {
+            System.out.println(counter + ". " + item);
+            counter++;
         }
-    } 
+    }
+
+    public double calculateTotalCost() {
+        double totalCost = 0;
+        for (double cost : groceryList.values()) {
+            totalCost += cost;
+        }
+        return totalCost;
+    }
 
     // This method should check if the given item is present in the grocery list and return a boolean value.
     public boolean checkItem(String item) {
-        return groceryList.contains(item);
+        return groceryList.containsKey(item);
     }
 
     public static void main(String[] args) {
         GroceryListManager manager = new GroceryListManager();
 
-        manager.addItem("Apples");
-        manager.addItem("Milk");
-        manager.addItem("Bread");
+        manager.addItem("Apples", 10);
+        manager.addItem("Milk", 20);
+        manager.addItem("Bread", 30);
 
         System.out.println("Grocery List:");
         manager.displayList();
@@ -57,7 +68,9 @@ public class GroceryListManager {
         manager.displayList();
 
         // Error checks
-        manager.addItem("Apples"); // duplicate
+        manager.addItem("Apples", 20); // duplicate
         manager.removeItem("Tomatoes"); // not existent
+
+        System.out.println("Total cost: " + manager.calculateTotalCost());
     }
 }
