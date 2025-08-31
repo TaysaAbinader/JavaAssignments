@@ -1,6 +1,6 @@
 package Chapter_3_2;
 
-public abstract class AbstractVehicle implements Vehicle {
+public abstract class AbstractVehicle implements Vehicle, ElectricVehicle {
     private String type;
     private String fuel;
     private String colour;

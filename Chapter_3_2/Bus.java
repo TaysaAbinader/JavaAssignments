@@ -15,4 +15,9 @@ public class Bus extends AbstractVehicle {
     public String stop () {
         return "Bus is stoping...";
     }
+
+    @Override
+    public String charge() {
+        return "Bus can't be charged.";
+    }
 }

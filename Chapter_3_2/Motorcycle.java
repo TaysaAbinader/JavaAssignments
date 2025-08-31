@@ -15,4 +15,9 @@ public class Motorcycle extends AbstractVehicle {
     public String stop () {
         return "Motorcycle is stoping...";
     }
+
+    @Override
+    public String charge() {
+        return "Motorcycle can't be charged.";
+    }
 }
