@@ -39,7 +39,7 @@ public class Library {
         for (Book book : bookList) {
             String title = book.getTitle();
             if (titleSearched.equals(title)) {
-                System.out.println(book + " is being borrowed.");
+                System.out.println(book.getTitle() + " is being borrowed.");
                 bookList.remove(book);
                 return Optional.of(book);
             }
@@ -50,7 +50,7 @@ public class Library {
 
     public void returnBook (Book book) {
         if (!bookList.contains(book)) {
-            System.out.println(book + " is being returned.");
+            System.out.println(book.getTitle() + " is being returned.");
             bookList.add(book);
             return;
         }

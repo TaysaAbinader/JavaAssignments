@@ -6,7 +6,7 @@ public class LibraryMain {
 
     public static void main(String[] args) {
         
-        Book book1 = new Book("Introduction to Java Programming", "John Smith", 2020);
+        Book book1 = new Book("Introduction to Java Programming", "John Smith", 2020 );
         Book book2 = new Book("Data Structures and Algorithms", "Jane Doe", 2018);
         Book book3 = new Book("The Art of Fiction", "Alice Johnson", 2019);
 
@@ -15,6 +15,11 @@ public class LibraryMain {
         library.addBook(book1);
         library.addBook(book2);
         library.addBook(book3);
+
+        book1.setRating(3.5);
+        book2.setRating(4.0);
+
+        book3.setReview("Very entertaining for your free time.");
 
         library.displayBooks();
 
@@ -31,5 +36,7 @@ public class LibraryMain {
             library.returnBook(maybeBorrowedBook.get());
         }
     }
+
+    
 
 }
