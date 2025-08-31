@@ -1,25 +1,35 @@
 package Chapter_2_3;
 
+import java.util.ArrayList;
+
 public class Book {
     private  String title;
     private String author;
     private int publicationYear;
-    private double rating = 0.0;
-    private String review = null;
+    private double ratings;
+    private ArrayList<String> reviews = new ArrayList<>();
 
     public Book (String title, String author, int publicationYear) {
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
+    }
+
+    public void addRating (double rating) {
+        this.ratings = rating;
+    }
+
+    public double getRating () {
+        return this.ratings;
+    }
+
+    public void addReview (String review) {
+        for (String item : reviews) {
+            if (item == review)
+            System.err.println("Error: Repeated review");
+        }
+        reviews.add(review);
         
-    }
-
-    public void setRating (double rating) {
-        this.rating = rating;
-    }
-
-    public void setReview (String review) {
-        this.review = review;
     }
 
     public String getTitle () {
@@ -34,19 +44,17 @@ public class Book {
         return this.publicationYear;
     }
 
-    public double getRate () {
-        return this.rating;
+    public ArrayList<String> getReview () {
+        return reviews;
     }
 
-    public String getReview () {
-        return this.review;
+    public int getReviewAmount () {
+        return reviews.size();
+
     }
-
-
 
     @Override
     public String toString () {
-        return "Title: " + title + ", Author: " + author + ", Year: " + publicationYear + ", Rating: " + rating + ", Reviews: " + review;
+        return "Title: " + title + ", Author: " + author + ", Year: " + publicationYear + ", Rating: " + ratings + ", Reviews: " + reviews.size();
     }
-
 }

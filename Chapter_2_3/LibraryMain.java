@@ -16,10 +16,15 @@ public class LibraryMain {
         library.addBook(book2);
         library.addBook(book3);
 
-        book1.setRating(3.5);
-        book2.setRating(4.0);
+        book1.addRating(3.5);
+        book2.addRating(4.0);
+        book3.addRating(5);
 
-        book3.setReview("Very entertaining for your free time.");
+        book3.addReview("Very entertaining for your free time.");
+        book3.addReview("Nice book.");
+        book3.addReview("Highly recommend.");
+        book2.addReview("Useful.");
+        book1.addReview("Nice book.");
 
         library.displayBooks();
 
@@ -35,7 +40,12 @@ public class LibraryMain {
             System.out.println("Check if the borrowed book is the same as the one previously added: " + isTheSameBook);
             library.returnBook(maybeBorrowedBook.get());
         }
+        library.getAverageBookRating();
+
+        library.getMostReviewedBook();
     }
+
+    
 
     
 

@@ -68,4 +68,27 @@ public class Library {
         return false;
     }
 
+    public void getAverageBookRating () {
+        double totalValue = 0;
+        for (Book item : bookList) {
+            totalValue =+ item.getRating();
+        }
+        double averageValue = totalValue/bookList.size();
+        System.out.println("The average rating of all books is: " + String.format("%.2f", averageValue));
+    }
+
+    public Book getMostReviewedBook () {
+        int highestReviewAmount = 0;
+        Book highestReviewedBook = null;
+        for (Book item : bookList) {
+            int reviewAmount = item.getReviewAmount();
+            if (reviewAmount > highestReviewAmount) {
+                highestReviewAmount = reviewAmount;
+                highestReviewedBook = item;
+            }
+        }
+        System.out.println("The book with most reviews (" + highestReviewAmount + ") is: " + highestReviewedBook.getTitle());
+        return highestReviewedBook;
+    }
+
 }
