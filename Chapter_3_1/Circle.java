@@ -4,7 +4,8 @@ public class Circle extends Shape {
     private double radius;
     private double pi = Math.PI;
     
-    public Circle (double radius) {
+    public Circle (String colour, double radius) {
+        super(colour);
         this.radius = radius;
     }
     
