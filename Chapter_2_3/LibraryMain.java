@@ -1,5 +1,7 @@
 package Chapter_2_3;
 
+import java.util.Optional;
+
 public class LibraryMain {
 
     public static void main(String[] args) {
@@ -17,6 +19,12 @@ public class LibraryMain {
         library.displayBooks();
 
         library.findBookByAuthor("Jane Doe");
+
+        Optional<Book> maybeBorrowedBook = library.borrowBook(book2.getTitle());
+        if (maybeBorrowedBook.isPresent()) {
+            System.out.println("Check if the borrowed book is the same as the one previously added: " + (maybeBorrowedBook.get() == book2));
+            library.returnBook(maybeBorrowedBook.get());
+        }
     }
 
 }
