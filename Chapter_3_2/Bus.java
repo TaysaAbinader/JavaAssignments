@@ -1,6 +1,6 @@
 package Chapter_3_2;
 
-public class Bus extends Car {
+public class Bus extends AbstractVehicle {
 
     public Bus (String type, String fuel, String colour) {
         super(type, fuel, colour);
@@ -15,6 +15,4 @@ public class Bus extends Car {
     public String stop () {
         return "Bus is stoping...";
     }
-
-
 }

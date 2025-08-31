@@ -1,26 +1,18 @@
 package Chapter_3_2;
 
-public class Car implements Vehicle {
-    private String type;
-    private String fuel;
-    private String colour;
+public class Car extends AbstractVehicle {
 
     public Car (String type, String fuel, String colour) {
-        this.type = type;
-        this.fuel = fuel;
-        this.colour = colour;
+        super(type, fuel, colour);
     }
 
+    @Override
     public String start () {
         return "Car is starting...";
     }
 
+    @Override
     public String stop () {
         return "Car is stoping...";
     }
-
-    public String getInfo () {
-        return "Type: " + type + "\nFuel: " + fuel + "\nColour: " + colour + "\n";
-    }
-
 }
