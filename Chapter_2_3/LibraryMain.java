@@ -10,11 +10,23 @@ public class LibraryMain {
         Book book2 = new Book("Data Structures and Algorithms", "Jane Doe", 2018);
         Book book3 = new Book("The Art of Fiction", "Alice Johnson", 2019);
 
+        User user1 = new User("John", 20);
+        User user2 = new User("Mary", 35);
+        User user3 = new User("Jack", 50);
+
         Library library = new Library();
 
         library.addBook(book1);
         library.addBook(book2);
         library.addBook(book3);
+
+        user1.addToBorrowedBooks(book1);
+        user2.addToBorrowedBooks(book3);
+        user3.addToBorrowedBooks(book2);
+
+        library.addUser(user1);
+        library.addUser(user2);
+        library.addUser(user3);
 
         book1.addRating(3.5);
         book2.addRating(4.0);
@@ -43,6 +55,9 @@ public class LibraryMain {
         library.getAverageBookRating();
 
         library.getMostReviewedBook();
+
+        library.getUser("Jane");
+        library.getUser("Jack");
     }
 
     

@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class Library {
-    private ArrayList<Book> bookList;
+    private ArrayList<Book> bookList = new ArrayList<>();
+    private ArrayList<User> userList = new ArrayList<>();
 
-    public Library () {
-        this.bookList = new ArrayList<>();
-    }
+    public Library () {}
 
     public void addBook (Book book) {
         if (bookList.contains(book)) {
@@ -16,6 +15,26 @@ public class Library {
         }
         bookList.add(book);
     }
+
+    public void addUser (User user) {
+        if (userList.contains(user)) {
+            System.err.println("Error: User already exists.");
+        }
+        userList.add(user);
+    }
+
+    public Optional<User> getUser (String name) {
+        for (User user : userList) {
+            String userName = user.getName();
+            if (userName.equals(name)) {
+                System.out.println("The user: " + name + " borrowed: " + user.getBorrowedBooks());
+                return Optional.of(user);
+            }
+        }
+        System.err.println("User " + name + " not found.");
+        return Optional.empty();
+    }
+    
 
     public void displayBooks () {
         for (Book book : bookList) {
