@@ -22,7 +22,8 @@ public class LibraryMain {
 
         Optional<Book> maybeBorrowedBook = library.borrowBook(book2.getTitle());
         if (maybeBorrowedBook.isPresent()) {
-            System.out.println("Check if the borrowed book is the same as the one previously added: " + (maybeBorrowedBook.get() == book2));
+            boolean isTheSameBook = maybeBorrowedBook.get() == book2;
+            System.out.println("Check if the borrowed book is the same as the one previously added: " + isTheSameBook);
             library.returnBook(maybeBorrowedBook.get());
         }
     }
