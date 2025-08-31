@@ -2,8 +2,8 @@ package Chapter_3_2;
 
 public class ElectricMotorcycle extends AbstractVehicle {
 
-    public ElectricMotorcycle (String type, String fuel, String colour) {
-        super(type, fuel, colour);
+    public ElectricMotorcycle (String type, String fuel, String colour, String fuelEfficiency) {
+        super(type, fuel, colour, fuelEfficiency);
     }
 
     @Override

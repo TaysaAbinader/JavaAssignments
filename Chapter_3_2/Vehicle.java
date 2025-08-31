@@ -4,4 +4,5 @@ public interface Vehicle {
     String start ();
     String stop ();
     String getInfo ();
+    String calculateFuelEfficiency ();
 }
