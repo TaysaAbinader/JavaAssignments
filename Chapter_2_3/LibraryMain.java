@@ -20,6 +20,10 @@ public class LibraryMain {
 
         library.findBookByAuthor("Jane Doe");
 
+        library.isBookAvailable("Data Structures and Algorithms");
+
+        library.isBookAvailable("Love and Prejudice");
+
         Optional<Book> maybeBorrowedBook = library.borrowBook(book2.getTitle());
         if (maybeBorrowedBook.isPresent()) {
             boolean isTheSameBook = maybeBorrowedBook.get() == book2;

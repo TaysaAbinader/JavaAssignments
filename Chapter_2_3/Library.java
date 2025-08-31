@@ -57,4 +57,15 @@ public class Library {
         System.err.println("Error: book " + book.getTitle() + " is already on the list.");
     }
 
+    public boolean isBookAvailable (String title) {
+        for (Book book : bookList) {
+            if (title == book.getTitle()) {
+                System.out.println(title + " is available.");
+                return true;
+            }
+        }
+        System.out.println(title + " is not available.");
+        return false;
+    }
+
 }
