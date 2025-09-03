@@ -62,7 +62,59 @@ public class Library {
         System.out.println("Members' List");
         for (LibraryMember item : membersList) {
             System.out.println("Member:\n" + item.getName() + " - " + item.getMemberID());
-            
+        }
+    }
+
+    public void reserveBook (Book book, LibraryMember member) {
+        if (!booksCatalogue.contains(book)) {
+            System.err.println("Error: " + book.getTitle() + " not available for reservation.");
+            return;
+        } 
+        if (book.isReserved()) {
+            System.err.println("Error: " + book.getTitle() + " already reserved.");
+            return;
+        }
+        if (!membersList.contains(member)) {
+            System.err.println("Error: " + member.getName() + " not found.");
+            return;
+        }
+        if (member.isBookReserved(book)) {
+            System.err.println("Error: " + book.getTitle() + " already reserved to " + member.getName() + ".");
+            return;
+        }
+        System.out.println(book.getTitle() + " is reserved.");
+        book.setReserved(true);
+        member.addReservedBook(book);
+    }
+
+    public void cancelReservation (Book book, LibraryMember member) {
+        if (!booksCatalogue.contains(book)) {
+            System.err.println("Error: " + book.getTitle() + " does not belong to this library.");
+            return;
+        } 
+        if (!book.isReserved()) {
+            System.err.println("Error: " + book.getTitle() + " was not reserved.");
+            return;
+        }
+        if (!membersList.contains(member)) {
+            System.err.println("Error: " + member.getName() + " not found.");
+            return;
+        }
+        if (!member.isBookReserved(book)) {
+            System.err.println("Error: " + book.getTitle() + " was not reserved by " + member.getName() + ".");
+            return;
+        }
+        System.out.println(book.getTitle() + " reserve is being cancelled.");
+        book.setReserved(false);
+        member.removeReservedBook(book);
+    }
+
+    public void displayReservedBooks () {
+        System.out.println("Reserved Books: ");
+        for (Book item : booksCatalogue) {
+            if (item.isReserved()) {
+                System.out.println(item.toString());
+            }
         }
     }
 }

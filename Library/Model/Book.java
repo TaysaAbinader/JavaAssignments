@@ -4,6 +4,7 @@ public class Book {
     private String title;
     private String author;
     private String isbn;
+    private boolean reserved = false;
 
     public Book (String title, String author, String isbn) {
         this.title = title;
@@ -21,6 +22,14 @@ public class Book {
 
     public String getIsbn() {
         return this.isbn;
+    }
+
+    public boolean isReserved () {
+        return reserved;
+    }
+
+    public void setReserved (boolean reserved) {
+        this.reserved = reserved;
     }
 
     @Override

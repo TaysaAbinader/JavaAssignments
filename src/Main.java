@@ -6,6 +6,8 @@ import Library.System.*;
 public class Main {
     public static void main(String[] args) {
 
+        // Task 2 test
+
         Library fakeLibrary = new Library();
 
         LibraryMember member1 = new LibraryMember("John Doe");
@@ -45,6 +47,22 @@ public class Main {
 
         fakeLibrary.displayCatalogue();
         fakeLibrary.displayMembers();
+
+        // Task 3 test
+
+        fakeLibrary.reserveBook(book5, member3);
+        fakeLibrary.reserveBook(book4, member2);
+        fakeLibrary.reserveBook(book5, member1);
+
+
+        fakeLibrary.displayReservedBooks();
+
+        fakeLibrary.cancelReservation(book5, member3);
+        fakeLibrary.cancelReservation(book4, member2);
+
+        fakeLibrary.displayReservedBooks();
+
+
     }
 
 }
