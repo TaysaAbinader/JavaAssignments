@@ -1,14 +1,17 @@
 package Chapter_3_4;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class FibonacciSequence {
 
-    public static long generateNumber(int size) {
+    public static ArrayList<Long> generate(int size) {
         ArrayList<Long> fibonacciSequence = new ArrayList<>();
         if (size <= 2) {
             System.err.println("Fibonacci sequence needs to be bigger than 2 numbers.");
-            return 0;
+            return fibonacciSequence;
         }
 
         fibonacciSequence.add(0L); // first number
@@ -23,11 +26,26 @@ public class FibonacciSequence {
             fibonacciSequence.add(fn);
         }
 
-        return fibonacciSequence.getLast();
+        return fibonacciSequence;
     }
 
     public static void main(String[] args) {
-        long number = FibonacciSequence.generateNumber(60);
-        System.out.println("The Fibonacci sequence for 60 numbers is " + number);
+        ArrayList<Long> fibonacciSequence = FibonacciSequence.generate(60);
+        System.out.println("The Fibonacci sequence for 60 numbers is " + fibonacciSequence.getLast());
+
+        String fileName = "Chapter_3_4/fibonacci-numbers.csv";
+        try {
+            FileWriter fileWriter = new FileWriter(fileName);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            for (Long number : fibonacciSequence) {
+                bufferedWriter.write(number.toString());
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
+            System.out.println("File written: " + fileName);
+        } catch (IOException e) {
+            System.err.println(e);
+            e.printStackTrace();
+        }
     }
 }
