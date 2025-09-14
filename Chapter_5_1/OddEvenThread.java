@@ -13,5 +13,14 @@ public class OddEvenThread {
 
         oddThread.start();
         evenThread.start();
+
+        try {
+            oddThread.join();
+            evenThread.join();
+        } catch (InterruptedException e) {
+            System.err.println(e);
+        }
+
+        System.out.println("Program end");
     }
 }
