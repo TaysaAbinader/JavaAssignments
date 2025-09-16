@@ -16,15 +16,18 @@ public class Customer implements Runnable {
         return this.id;
     }
 
+    public int getTicketsToBuy () {
+        return this.ticketsToBuy;
+    }
+
     @Override
     public void run() {
         try {
-        for (int i = 0; i < tickets.getAvailableTickets(); i = ticketsToBuy) {
-            tickets.removeTicketfromTotal(i);
-            }
-        } 
+            tickets.tryToPurchaseTickets(ticketsToBuy);
+            System.out.println("Customer " + this.id + " reserved " + ticketsToBuy + " tickets.");
+        }
         catch (ArithmeticException e) {
-            System.err.println(e);
+            System.err.println("Customer " + this.id + " couldn't reserve " + ticketsToBuy + " tickets.");
         }
     }
 }

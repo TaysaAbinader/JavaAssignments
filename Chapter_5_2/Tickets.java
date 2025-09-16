@@ -11,14 +11,11 @@ public class Tickets {
         return totalAvailableTickets;
     }
 
-    public synchronized int removeTicketfromTotal (int ticketsquantity) {
-        if (ticketsquantity > totalAvailableTickets) {
-            System.err.println("There aren't " + ticketsquantity + " available.");
+    public synchronized void tryToPurchaseTickets (int ticketsQuantity) {
+        if (ticketsQuantity > totalAvailableTickets) {
             throw new ArithmeticException("Out of tickets.");
-
         }
-        return totalAvailableTickets -= ticketsquantity;
-
+        totalAvailableTickets -= ticketsQuantity;
     }
 
 }
