@@ -13,7 +13,7 @@ CREATE TABLE Currency.CurrencyRate (
 );
 
 -- 4. Statements for populating the table with data. You should include at least eight currencies with up-to-date exchange rates in the table.
-INSERT INTO Currency.CurrencyRate (CurrencyRateToUSD, CurrencyValueToUSD) VALUES('USD', 0.8541);
+INSERT INTO Currency.CurrencyRate (CurrencyRateToUSD, CurrencyValueToUSD) VALUES('USD', 1.0);
 INSERT INTO Currency.CurrencyRate (CurrencyRateToUSD, CurrencyValueToUSD) VALUES('BRL', 5.3375);
 INSERT INTO Currency.CurrencyRate (CurrencyRateToUSD, CurrencyValueToUSD) VALUES('GBP', 0.7462);
 INSERT INTO Currency.CurrencyRate (CurrencyRateToUSD, CurrencyValueToUSD) VALUES('JPY', 149.4540);
@@ -27,7 +27,7 @@ INSERT INTO Currency.CurrencyRate (CurrencyRateToUSD, CurrencyValueToUSD) VALUES
 DROP USER IF EXISTS 'appuser'@'localhost';
 
 -- 6. A statement for creating the user account appuser.
-CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'changeme';
+CREATE USER 'appuser'@'localhost' IDENTIFIED BY 'password';
 
 -- 7. Statements for granting the privileges to the user account appuser.
 GRANT SELECT ON Currency.CurrencyRate TO 'appuser'@'localhost';
