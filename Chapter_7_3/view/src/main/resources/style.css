@@ -1,0 +1,23 @@
+/* Apply to all controls */
+.root {
+    font-size: 14pt;         /* standard CSS property */
+    -fx-font-size: 14pt;     /* JavaFX property */
+    font-family: sans-serif; /* standard */
+    -fx-font-family: "Arial"; /* JavaFX-specific */
+}
+
+/* Labels */
+.label {
+    font-size: 16pt;
+    -fx-font-size: 16pt;
+    font-family: sans-serif;
+    -fx-font-family: "Verdana";
+}
+
+/* TextField */
+.text-field {
+    font-size: 14pt;
+    -fx-font-size: 14pt;
+    font-family: sans-serif;
+    -fx-font-family: "Segoe UI";
+}
