@@ -1,22 +1,27 @@
 package org.example;
 
-public class ShoppingCart {
+import java.util.HashMap;
 
-    public void addItem(String apple, double v) {
-        // TODO
+public class ShoppingCart {
+    HashMap<String, Double> items;
+
+    public ShoppingCart() {
+        items = new HashMap<>();
     }
 
-    public void removeItem(String apple) {
-        // TODO
+    public void addItem(String item, double value) {
+        items.put(item, value);
+    }
+
+    public void removeItem(String item) {
+        items.remove(item);
     }
 
     public int getItemCount() {
-        // TODO
-        return 0;
+        return items.size();
     }
 
     public double calculateTotal() {
-        // TODO
-        return 0.0;
+        return items.values().stream().mapToDouble(Double::doubleValue).sum();
     }
 }
